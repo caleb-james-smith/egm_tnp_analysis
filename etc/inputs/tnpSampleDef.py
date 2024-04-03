@@ -20,11 +20,16 @@ eosUL2018 = '/eos/cms/store/group/phys_egamma/tnpTuples/tomc/2020-05-20/UL2018/m
 #Run3
 eosRun3 = '/eos/cms/store/group/phys_egamma/ec/fmausolf/EGM_comm/'
 
+# 2022
 eos_Run3_124X = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-04-25/2022/'
 eos_Run3_PromptReco = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-04-25/2022/'
 eos_Reco_Run3_PromptReco = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-05-01/2022/data/'
 eos_Reco_Run3_124X = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-02-09/2022/mc/'
 
+# 2023
+eos_2023_PromptReco = '/store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023/data'
+eos_2023preBPIX = '/store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023preBPIX/mc'
+eos_2023postBPIX = '/store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023postBPIX/mc'
 
 ReReco2017 = {
 
@@ -147,6 +152,8 @@ UL2018 = {
     'data_Run2018D' : tnpSample('data_Run2018D' , eosUL2018 + 'Run2018D.root' , lumi = 31.74220577),
 }
 
+# 2022
+
 Run3 = {
     'DY_madgraph'              : tnpSample('DY_madgraph',
                                        eosRun3 + 'DYToEE_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8_EleID_PhoID/DYToEE_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8/DYToEE_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8_EleID_PhoID/221018_080249/0000/merged.root',
@@ -197,3 +204,53 @@ Run3_Reco_124X_PromptReco_postEE = {
         'data_Run2022F': tnpSample('data_Run2022F', eos_Reco_Run3_PromptReco + '/TnPTree_EGamma_2022_Run2022F.root', lumi = 18.0064),
         'data_Run2022G': tnpSample('data_Run2022G', eos_Reco_Run3_PromptReco + '/TnPTree_EGamma_2022_Run2022G.root', lumi = 3.1219)
         }
+
+#
+# 2023
+#
+# Example files:
+#
+# data 2023C:
+# /store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023/data/EGamma0/crab_2023_Run2023C_0v1/240402_215012/0000/TnPTree_data_1.root
+#
+# data 2023D:
+# /store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023/data/EGamma0/crab_2023_Run2023D_0v1/240402_215250/0000/TnPTree_data_1.root
+#
+# MC 2023preBPIX: DY to 2L, 2Jets, amcatnlo
+# /store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023preBPIX/mc/DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/crab_2023preBPIX_DY_NLO_preBPIX/240402_215420/0000/TnPTree_data_1.root
+#
+# MC 2023preBPIX: DY to 2L, 4Jets, madgraph
+# /store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023preBPIX/mc/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023preBPIX_DY_LO_preBPIX/240402_215404/0000/TnPTree_data_1.root
+#
+# MC 2023postBPIX: DY to 2L, 2Jets, amcatnlo
+# /store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023postBPIX/mc/DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/crab_2023postBPIX_DY_NLO_postBPIX/240402_215456/0000/TnPTree_data_1.root
+#
+# MC 2023postBPIX: DY to 2L, 4Jets, madgraph
+# /store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023postBPIX/mc/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root
+#
+
+# Skip for now:
+# - Not including nEvts for MC
+# - Not including lumi for data
+
+# Question: What global tags should we use for Run 3?
+# From TnPTreeProducer (TnPTreeProducer_cfg.py):
+# - For 2022 data, the global tag is "124X_dataRun3_Prompt_v10". 
+# - For 2023 data, the global tag is "130X_dataRun3_PromptAnalysis_v1".
+
+Run3_2023 = {
+}
+
+Run3_PromptReco2023C = {
+    'DY_4j_madgraph_2023postBPIX'   : tnpSample('DY_4j_madgraph_2023postBPIX',  eos_2023postBPIX + '/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root', isMC=True),
+    'data_Run2023C'                 : tnpSample('data_Run2023C',                eos_2023_PromptReco + '/EGamma0/crab_2023_Run2023C_0v1/240402_215012/0000/TnPTree_data_1.root')
+}
+
+Run3_PromptReco2023D = {
+    'DY_4j_madgraph_2023postBPIX'   : tnpSample('DY_4j_madgraph_2023postBPIX',  eos_2023postBPIX + '/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root', isMC=True),
+    'data_Run2023D'                 : tnpSample('data_Run2023D',                eos_2023_PromptReco + '/EGamma0/crab_2023_Run2023D_0v1/240402_215250/0000/TnPTree_data_1.root')
+}
+
+
+
+
