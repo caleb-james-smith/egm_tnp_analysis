@@ -89,18 +89,20 @@ if not samplesDef['tagSel'] is None:
 #if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 #if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
 
-# FIXME: Update puFile and weightName for 2023.
-
 ## set MC weight, can use several pileup rw for different data taking periods
-puFile = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-04-25/2022/pu/DY_1j_madgraph_PromptReco2022FG_tnpEleID.pu.puTree.root'
-weightName = 'weights_2022_runFG.totWeight'
+#puFile = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-04-25/2022/pu/DY_1j_madgraph_PromptReco2022FG_tnpEleID.pu.puTree.root'
+#weightName = 'weights_2022_runFG.totWeight'
+
+# FIXME: Update puFile and weightName for 2023.
+puFile = 'FIXME'
+weightName = 'FIXME'
+
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree(puFile)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree(puFile)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree(puFile)
-
 
 #############################################################
 ########## bining definition  [can be nD bining]

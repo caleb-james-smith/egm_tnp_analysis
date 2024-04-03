@@ -27,9 +27,9 @@ eos_Reco_Run3_PromptReco = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/20
 eos_Reco_Run3_124X = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-02-09/2022/mc/'
 
 # 2023
-eos_2023_PromptReco = '/store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023/data'
-eos_2023preBPIX = '/store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023preBPIX/mc'
-eos_2023postBPIX = '/store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023postBPIX/mc'
+eos_2023_PromptReco = 'root://cmseos.fnal.gov//store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023/data'
+eos_2023preBPIX = 'root://cmseos.fnal.gov//store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023preBPIX/mc'
+eos_2023postBPIX = 'root://cmseos.fnal.gov//store/user/caleb/CMS_EGamma/tnpTuples/Prompt2023/2024-04-02/2023postBPIX/mc'
 
 ReReco2017 = {
 
