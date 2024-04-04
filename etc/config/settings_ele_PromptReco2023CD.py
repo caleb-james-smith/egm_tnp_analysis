@@ -7,6 +7,7 @@ cutpass90 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs
 
 # flag to be Tested
 flags = {
+    'passingAllEvents'              : '(1 == 1)',
     'passingCutBasedVeto94XV2'      : '(passingCutBasedVeto94XV2 == 1)',
     'passingCutBasedLoose94XV2'     : '(passingCutBasedLoose94XV2 == 1)',
     'passingCutBasedMedium94XV2'    : '(passingCutBasedMedium94XV2 == 1)',
