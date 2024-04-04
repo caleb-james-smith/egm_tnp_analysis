@@ -24,6 +24,13 @@ cdef void removeNegativeBins(TH1D* h):
 ##################################
 
 def makePassFailHistograms( sample, flag, bindef, var ):
+    sample_name = sample.name
+    bindef_vars = bindef["vars"]
+    print("Running makePassFailHistograms().")
+    print(f" - sample name: {sample_name}")
+    print(f" - flag: {flag}")
+    print(f" - bindef vars: {bindef_vars}")
+    print(f" - var: {var}")
 
     #####################
     # C++ Initializations
@@ -138,7 +145,12 @@ def makePassFailHistograms( sample, flag, bindef, var ):
     nevts = tree.GetEntries()
     frac_of_nevts = nevts/20
 
-    print("Starting event loop to fill histograms..")
+    print("Caleb was here.")
+
+    print(f" - nevts = {nevts}")
+    print(f" - frac_of_nevts = {frac_of_nevts}")
+
+    print("Starting event loop to fill histograms...")
 
     for index in range(nevts):
         if index % frac_of_nevts == 0:
