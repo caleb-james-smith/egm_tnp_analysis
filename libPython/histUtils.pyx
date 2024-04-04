@@ -153,11 +153,15 @@ def makePassFailHistograms( sample, flag, bindef, var ):
     print("Starting event loop to fill histograms...")
 
     for index in range(nevts):
+        print(f" - index = {index}")
         if index % frac_of_nevts == 0:
             print outcount, "%", sample.name
             outcount = outcount + 5
 
+        # Debugging seg fault:
+        print(f"Before tree.GetEntry({index})")
         tree.GetEntry(index)
+        print(f"After tree.GetEntry({index})")
 
         for bnidx in range(nbins):
             weight = bin_formulas[bnidx].EvalInstance(0)
