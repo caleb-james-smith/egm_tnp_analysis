@@ -1,5 +1,7 @@
-import ROOT
+# massHistFit.py
+
 import os
+import ROOT
 
 # Make sure ROOT.TFile.Open(fileURL) does not seg fault when $ is in sys.argv (e.g. $ passed in as argument)
 ROOT.PyConfig.IgnoreCommandLineOptions = True
@@ -15,8 +17,10 @@ def makeDir(dir_name):
 
 # Analyze root file
 def analyze(file_name, variable, cuts = ""):
-    makeDir("plots")
     print("file name: {0}".format(file_name))
+    
+    plot_dir = "plots"
+    makeDir(plot_dir)
     
     # Load canvas from root file
     canvas_name = "Canvas_1"
@@ -76,9 +80,9 @@ def analyze(file_name, variable, cuts = ""):
 
     # Save plot
     if cuts:
-        plot_name = "plots/{0}_{1}.pdf".format(variable, cuts)
+        plot_name = "{0}/{1}_{2}.pdf".format(plot_dir, variable, cuts)
     else:
-        plot_name = "plots/{0}.pdf".format(variable)
+        plot_name = "{0}/{1}.pdf".format(plot_dir, variable)
     
     new_c.Update()
     new_c.SaveAs(plot_name)
