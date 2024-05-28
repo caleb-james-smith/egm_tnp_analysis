@@ -47,14 +47,8 @@ def analyze(file_name, variable, cuts = ""):
     print("h: {0}".format(h))
 
     # Declare observable x
-    x = ROOT.RooRealVar("x", "x", 50, 130)
+    x = ROOT.RooRealVar("x", "mass", 50, 130)
 
-    # Create a binned dataset that imports contents of ROOT.TH1 and associates
-    # its contents to observable 'x'
-    #dh = ROOT.RooDataHist("dh", "dh", [x], Import=h)
-    #dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), Import=("SampleA", h))
-    #dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), ROOT.RooFit.Import("SampleA", h))
-    
     # Import the histogram into a RooDataHist
     data = ROOT.RooDataHist("data", "dataset with x", ROOT.RooArgList(x), h)
 
@@ -68,22 +62,12 @@ def analyze(file_name, variable, cuts = ""):
     # Fit the Gaussian model to the data
     gauss.fitTo(data)
     
-    # Make plot of binned dataset showing Poisson error bars (RooFit default)
-    #frame = x.frame(ROOT.RooFit.Title("Imported ROOT.TH1 with Poisson error bars"))
-    #dh.plotOn(frame)
-
-    # Fit data
-    #gauss.fitTo(dh)
-    #gauss.plotOn(frame)
-    #mean.Print()
-    #sigma.Print()
-    
     # Create a canvas to display the results
     new_c = ROOT.TCanvas("c", "Gaussian Fit", 800, 600)
     new_c.cd()
     
     # Create a RooPlot to visualize the fit results
-    xframe = x.frame(ROOT.RooFit.Title("Gaussian Fit"))
+    xframe = x.frame(ROOT.RooFit.Title("Gaussian Fit to Invariant Mass"))
     
     # Plot the data and the fit result on the RooPlot
     data.plotOn(xframe)
