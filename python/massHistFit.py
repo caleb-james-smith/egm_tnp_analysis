@@ -8,25 +8,24 @@ ROOT.gROOT.SetBatch(ROOT.kTRUE)
 # Tell ROOT not to be in charge of memory, fix issue of histograms being deleted when ROOT file is closed:
 ROOT.TH1.AddDirectory(False)
 
-# create directory if it does not exist
+# Create directory if it does not exist
 def makeDir(dir_name):
     if not os.path.exists(dir_name):
        os.makedirs(dir_name)
 
-# analyze root file
-def analyze(filename, variable, cuts = ""):
+# Analyze root file
+def analyze(file_name, variable, cuts = ""):
     makeDir("plots")
-    print("file name: {0}".format(filename))
+    print("file name: {0}".format(file_name))
     
     # Load canvas from root file
-    canvasname = "Canvas_1"
-    f = ROOT.TFile(filename)
-    c = f.Get(canvasname)
-    #c.Draw()        
+    canvas_name = "Canvas_1"
+    f = ROOT.TFile(file_name)
+    c = f.Get(canvas_name)
 
     # Check for errors when loading canvas
     if not c:
-        print("ERROR: Unable to load this canvas: {0}".format(canvasname))
+        print("ERROR: Unable to load this canvas: {0}".format(canvas_name))
         f.Close()
         return
 
@@ -39,7 +38,8 @@ def analyze(filename, variable, cuts = ""):
         print(" - {0}: {1}".format(type(p), p))
 
     # Load histogram
-    h = c.GetPrimitive("htemp")
+    hist_name = "htemp"
+    h = c.GetPrimitive(hist_name)
     print("h: {0}".format(h))
     
     # Draw histogram
@@ -48,16 +48,16 @@ def analyze(filename, variable, cuts = ""):
 
     # Save plot
     if cuts:
-        plotname = "plots/{0}_{1}.pdf".format(variable, cuts)
+        plot_name = "plots/{0}_{1}.pdf".format(variable, cuts)
     else:
-        plotname = "plots/{0}.pdf".format(variable)
+        plot_name = "plots/{0}.pdf".format(variable)
     
     new_c.Update()
-    new_c.SaveAs(plotname)
+    new_c.SaveAs(plot_name)
 
 def main():
-    filename = "massHist.root"
-    analyze(filename, "mass")
+    file_name = "massHist.root"
+    analyze(file_name, "mass")
     
 if __name__ == "__main__":
     main()
