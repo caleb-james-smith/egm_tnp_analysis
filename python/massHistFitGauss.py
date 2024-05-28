@@ -47,7 +47,7 @@ def analyze(file_name, variable, cuts = ""):
     print("h: {0}".format(h))
 
     # Declare observable x
-    x = ROOT.RooRealVar("x", "mass", 50, 130)
+    x = ROOT.RooRealVar("x", "invariant mass [GeV]", 50, 130)
 
     # Import the histogram into a RooDataHist
     data = ROOT.RooDataHist("data", "dataset with x", ROOT.RooArgList(x), h)
@@ -78,9 +78,9 @@ def analyze(file_name, variable, cuts = ""):
     
     # Define plot name
     if cuts:
-        plot_name = "{0}/{1}_{2}.pdf".format(plot_dir, variable, cuts)
+        plot_name = "{0}/{1}_{2}_gauss_fit.pdf".format(plot_dir, variable, cuts)
     else:
-        plot_name = "{0}/{1}.pdf".format(plot_dir, variable)
+        plot_name = "{0}/{1}_gauss_fit.pdf".format(plot_dir, variable)
     
     # Save the canvas as an image file
     new_c.Update()
