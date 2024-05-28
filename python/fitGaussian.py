@@ -2,7 +2,6 @@
 
 import os
 import ROOT
-from ROOT import RooRealVar, RooDataHist, RooGaussian, RooPlot
 
 # Make sure ROOT.TFile.Open(fileURL) does not seg fault when $ is in sys.argv (e.g. $ passed in as argument)
 ROOT.PyConfig.IgnoreCommandLineOptions = True
@@ -16,6 +15,7 @@ def makeDir(dir_name):
     if not os.path.exists(dir_name):
        os.makedirs(dir_name)
 
+# Fit gaussian
 def fit_gaussian():
     plot_dir = "plots"
     makeDir(plot_dir)
@@ -27,17 +27,17 @@ def fit_gaussian():
         hist.Fill(rnd.Gaus(0, 2))  # Gaussian distribution with mean 0 and sigma 2
 
     # Define the observable variable for RooFit
-    x = RooRealVar("x", "x", -10, 10)
+    x = ROOT.RooRealVar("x", "x", -10, 10)
 
     # Import the histogram into a RooDataHist
-    data = RooDataHist("data", "dataset with x", ROOT.RooArgList(x), hist)
+    data = ROOT.RooDataHist("data", "dataset with x", ROOT.RooArgList(x), hist)
 
     # Define the parameters for the Gaussian model
-    mean = RooRealVar("mean", "mean", 0, -10, 10)
-    sigma = RooRealVar("sigma", "sigma", 2, 0.1, 10)
+    mean = ROOT.RooRealVar("mean", "mean", 0, -10, 10)
+    sigma = ROOT.RooRealVar("sigma", "sigma", 2, 0.1, 10)
     
     # Define the Gaussian model
-    gauss = RooGaussian("gauss", "gaussian PDF", x, mean, sigma)
+    gauss = ROOT.RooGaussian("gauss", "gaussian PDF", x, mean, sigma)
 
     # Fit the Gaussian model to the data
     gauss.fitTo(data)
