@@ -46,8 +46,6 @@ def analyze(file_name, variable, cuts = ""):
     h = c.GetPrimitive(hist_name)
     print("h: {0}".format(h))
 
-    # Set up model for Z mass fit
-
     # Declare observable x
     x = ROOT.RooRealVar("x", "x", 50, 130)
 
@@ -55,35 +53,52 @@ def analyze(file_name, variable, cuts = ""):
     # its contents to observable 'x'
     #dh = ROOT.RooDataHist("dh", "dh", [x], Import=h)
     #dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), Import=("SampleA", h))
-    dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), ROOT.RooFit.Import("SampleA", h))
+    #dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), ROOT.RooFit.Import("SampleA", h))
+    
+    # Import the histogram into a RooDataHist
+    data = ROOT.RooDataHist("data", "dataset with x", ROOT.RooArgList(x), h)
 
-    mean    = ROOT.RooRealVar("mean", "mean of gaussian", 91, 50, 130)
-    sigma   = ROOT.RooRealVar("sigma", "width of gaussian", 10, 0.1, 50)
+    # Define the parameters for the Gaussian model
+    mean    = ROOT.RooRealVar("mean", "mean", 91, 50, 130)
+    sigma   = ROOT.RooRealVar("sigma", "width", 10, 0.1, 50)
+    
+    # Define the Gaussian model
     gauss   = ROOT.RooGaussian("gauss", "gaussian PDF", x, mean, sigma)
+
+    # Fit the Gaussian model to the data
+    gauss.fitTo(data)
     
     # Make plot of binned dataset showing Poisson error bars (RooFit default)
-    #frame = x.frame(Title="Imported ROOT.TH1 with Poisson error bars")
-    frame = x.frame()
-    dh.plotOn(frame)
+    #frame = x.frame(ROOT.RooFit.Title("Imported ROOT.TH1 with Poisson error bars"))
+    #dh.plotOn(frame)
 
     # Fit data
-    gauss.fitTo(dh)
-    gauss.plotOn(frame)
-    mean.Print()
-    sigma.Print()
+    #gauss.fitTo(dh)
+    #gauss.plotOn(frame)
+    #mean.Print()
+    #sigma.Print()
     
-    # Draw histogram
-    new_c = ROOT.TCanvas("c", "c", 800, 800)
+    # Create a canvas to display the results
+    new_c = ROOT.TCanvas("c", "Gaussian Fit", 800, 600)
     new_c.cd()
-    h.Draw()
-    frame.Draw()
-
-    # Save plot
+    
+    # Create a RooPlot to visualize the fit results
+    xframe = x.frame(ROOT.RooFit.Title("Gaussian Fit"))
+    
+    # Plot the data and the fit result on the RooPlot
+    data.plotOn(xframe)
+    gauss.plotOn(xframe)
+    
+    # Draw the RooPlot on the canvas
+    xframe.Draw()
+    
+    # Define plot name
     if cuts:
         plot_name = "{0}/{1}_{2}.pdf".format(plot_dir, variable, cuts)
     else:
         plot_name = "{0}/{1}.pdf".format(plot_dir, variable)
     
+    # Save the canvas as an image file
     new_c.Update()
     new_c.SaveAs(plot_name)
 
