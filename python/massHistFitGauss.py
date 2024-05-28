@@ -1,4 +1,4 @@
-# massHistFit.py
+# massHistFitGauss.py
 
 import os
 import ROOT
