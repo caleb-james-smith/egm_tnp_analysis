@@ -41,10 +41,18 @@ def analyze(file_name, variable, cuts = ""):
     hist_name = "htemp"
     h = c.GetPrimitive(hist_name)
     print("h: {0}".format(h))
+
+    # Set up model for Z mass fit
+    x       = ROOT.RooRealVar("x", "x", 50, 130)
+    mean    = ROOT.RooRealVar("mean", "mean of gaussian", 91, 50, 130)
+    sigma   = ROOT.RooRealVar("sigma", "width of gaussian", 91, 0.1, 50)
+    gauss   = ROOT.RooGaussian("gauss", "gaussian PDF", x, mean, sigma)
     
     # Draw histogram
     new_c = ROOT.TCanvas("c", "c", 800, 800)
+    xframe = x.frame() 
     h.Draw()
+    gauss.plotOn(xframe)
 
     # Save plot
     if cuts:
