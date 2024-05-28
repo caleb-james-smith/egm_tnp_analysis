@@ -43,16 +43,36 @@ def analyze(file_name, variable, cuts = ""):
     print("h: {0}".format(h))
 
     # Set up model for Z mass fit
-    x       = ROOT.RooRealVar("x", "x", 50, 130)
+
+    # Declare observable x
+    x = ROOT.RooRealVar("x", "x", 50, 130)
+
+    # Create a binned dataset that imports contents of ROOT.TH1 and associates
+    # its contents to observable 'x'
+    #dh = ROOT.RooDataHist("dh", "dh", [x], Import=h)
+    #dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), Import=("SampleA", h))
+    dh = ROOT.RooDataHist("dh", "dh", ROOT.RooArgList(x), ROOT.RooFit.Import("SampleA", h))
+
     mean    = ROOT.RooRealVar("mean", "mean of gaussian", 91, 50, 130)
-    sigma   = ROOT.RooRealVar("sigma", "width of gaussian", 91, 0.1, 50)
+    sigma   = ROOT.RooRealVar("sigma", "width of gaussian", 10, 0.1, 50)
     gauss   = ROOT.RooGaussian("gauss", "gaussian PDF", x, mean, sigma)
+    
+    # Make plot of binned dataset showing Poisson error bars (RooFit default)
+    #frame = x.frame(Title="Imported ROOT.TH1 with Poisson error bars")
+    frame = x.frame()
+    dh.plotOn(frame)
+
+    # Fit data
+    gauss.fitTo(dh)
+    gauss.plotOn(frame)
+    mean.Print()
+    sigma.Print()
     
     # Draw histogram
     new_c = ROOT.TCanvas("c", "c", 800, 800)
-    xframe = x.frame() 
+    new_c.cd()
     h.Draw()
-    gauss.plotOn(xframe)
+    frame.Draw()
 
     # Save plot
     if cuts:
@@ -62,6 +82,11 @@ def analyze(file_name, variable, cuts = ""):
     
     new_c.Update()
     new_c.SaveAs(plot_name)
+
+    # Delete objects
+    del f
+    del c
+    del new_c
 
 def main():
     file_name = "massHist.root"
