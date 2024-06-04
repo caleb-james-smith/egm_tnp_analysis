@@ -163,14 +163,20 @@ def makePassFailHistograms( sample, flag, bindef, var ):
         tree.GetEntry(index)
         print(f"After tree.GetEntry({index})")
 
+        print(f"Start loop over bins")
+        print(f"nbins: {nbins}")
         for bnidx in range(nbins):
+            print(f"bnidx: {bnidx}")
+            print(f"Before getting weight")
             weight = bin_formulas[bnidx].EvalInstance(0)
+            print(f"After getting weight")
             if weight:
                 if flag_formula.EvalInstance(0):
                     hPass[bnidx].Fill(pair_mass, weight)
                 else:
                     hFail[bnidx].Fill(pair_mass, weight)
                 break
+        print(f"End loop over bins")
 
     #####################
     # Deal with the Hists
