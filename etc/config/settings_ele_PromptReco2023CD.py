@@ -94,9 +94,14 @@ if not samplesDef['tagSel'] is None:
 #puFile = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-04-25/2022/pu/DY_1j_madgraph_PromptReco2022FG_tnpEleID.pu.puTree.root'
 #weightName = 'weights_2022_runFG.totWeight'
 
-# FIXME: Update puFile and weightName for 2023.
-puFile = 'FIXME'
-weightName = 'FIXME'
+# FIXME:
+# - We need to update the puFile and weightName for 2023.
+# - For now, we will use the puFile and weightName from 2022.
+# - The file can be accessed from lxplus using the "/eos/cms/store/group/phys_egamma/..." above.
+# - To access the file from cmslpc, we are using the global CERN redirector root://cms-xrd-global.cern.ch/
+#   and starting with "root://cms-xrd-global.cern.ch//store/group/phys_egamma/...".
+puFile = 'root://cms-xrd-global.cern.ch//store/group/phys_egamma/tnpTuples/bjoshi/2023-04-25/2022/pu/DY_1j_madgraph_PromptReco2022FG_tnpEleID.pu.puTree.root'
+weightName = 'weights_2022_runFG.totWeight'
 
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
