@@ -24,13 +24,16 @@ cdef void removeNegativeBins(TH1D* h):
 ##################################
 
 def makePassFailHistograms( sample, flag, bindef, var ):
+    debug = False
     sample_name = sample.name
     bindef_vars = bindef["vars"]
-    print("Running makePassFailHistograms().")
-    print(f" - sample name: {sample_name}")
-    print(f" - flag: {flag}")
-    print(f" - bindef vars: {bindef_vars}")
-    print(f" - var: {var}")
+
+    if debug:
+        print("Running makePassFailHistograms().")
+        print(f" - sample name: {sample_name}")
+        print(f" - flag: {flag}")
+        print(f" - bindef vars: {bindef_vars}")
+        print(f" - var: {var}")
 
     #####################
     # C++ Initializations
@@ -145,38 +148,36 @@ def makePassFailHistograms( sample, flag, bindef, var ):
     nevts = tree.GetEntries()
     frac_of_nevts = nevts/20
 
-    print("Caleb was here.")
-
-    print(f" - nevts = {nevts}")
-    print(f" - frac_of_nevts = {frac_of_nevts}")
-
-    print("Starting event loop to fill histograms...")
+    if debug:
+        print(f" - nevts = {nevts}")
+        print(f" - frac_of_nevts = {frac_of_nevts}")
+        print("Starting event loop to fill histograms...")
 
     for index in range(nevts):
-        print(f" - index = {index}")
+        if debug:
+            print(f" - index = {index}")
+        
         if index % frac_of_nevts == 0:
             print outcount, "%", sample.name
             outcount = outcount + 5
 
-        # Debugging seg fault:
-        print(f"Before tree.GetEntry({index})")
         tree.GetEntry(index)
-        print(f"After tree.GetEntry({index})")
 
-        print(f"Start loop over bins")
-        print(f"nbins: {nbins}")
+        if debug:
+            print(f"Start loop over bins")
+            print(f"nbins: {nbins}")
         for bnidx in range(nbins):
-            print(f"bnidx: {bnidx}")
-            print(f"Before getting weight")
+            if debug:
+                print(f"bnidx: {bnidx}")
             weight = bin_formulas[bnidx].EvalInstance(0)
-            print(f"After getting weight")
             if weight:
                 if flag_formula.EvalInstance(0):
                     hPass[bnidx].Fill(pair_mass, weight)
                 else:
                     hFail[bnidx].Fill(pair_mass, weight)
                 break
-        print(f"End loop over bins")
+        if debug:
+            print(f"End loop over bins")
 
     #####################
     # Deal with the Hists
