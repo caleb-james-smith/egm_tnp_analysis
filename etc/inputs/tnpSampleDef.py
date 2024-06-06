@@ -238,19 +238,21 @@ Run3_Reco_124X_PromptReco_postEE = {
 # - For 2022 data, the global tag is "124X_dataRun3_Prompt_v10". 
 # - For 2023 data, the global tag is "130X_dataRun3_PromptAnalysis_v1".
 
-Run3_2023 = {
-}
+# # use small single files for testing
+# Run3_PromptReco2023C = {
+#     'DY_4j_madgraph_2023postBPIX'   : tnpSample('DY_4j_madgraph_2023postBPIX',  eos_2023postBPIX + '/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root', isMC=True),
+#     'data_Run2023C'                 : tnpSample('data_Run2023C',                eos_2023_PromptReco + '/EGamma0/crab_2023_Run2023C_0v1/240402_215012/0000/TnPTree_data_1.root')
+# }
+# 
+# # use small single files for testing
+# Run3_PromptReco2023D = {
+#     'DY_4j_madgraph_2023postBPIX'   : tnpSample('DY_4j_madgraph_2023postBPIX',  eos_2023postBPIX + '/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root', isMC=True),
+#     'data_Run2023D'                 : tnpSample('data_Run2023D',                eos_2023_PromptReco + '/EGamma0/crab_2023_Run2023D_0v1/240402_215250/0000/TnPTree_data_1.root')
+# }
 
+# medium files
 Run3_PromptReco2023C = {
-    'DY_4j_madgraph_2023postBPIX'   : tnpSample('DY_4j_madgraph_2023postBPIX',  eos_2023postBPIX + '/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root', isMC=True),
-    'data_Run2023C'                 : tnpSample('data_Run2023C',                eos_2023_PromptReco + '/EGamma0/crab_2023_Run2023C_0v1/240402_215012/0000/TnPTree_data_1.root')
+    'DY_4j_madgraph_2023preBPIX'    : tnpSample('DY_4j_madgraph_2023preBPIX',   '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpData/Run3_2023/mc/mc_2023preBPIX_DYto2L-4Jets.root', isMC=True),
+    'data_Run2023C'                 : tnpSample('data_Run2023C',                '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpData/Run3_2023/data/data_EGamma0_crab_2023_Run2023C_0v1.root')
 }
-
-Run3_PromptReco2023D = {
-    'DY_4j_madgraph_2023postBPIX'   : tnpSample('DY_4j_madgraph_2023postBPIX',  eos_2023postBPIX + '/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/crab_2023postBPIX_DY_LO_postBPIX/240402_215440/0000/TnPTree_data_1.root', isMC=True),
-    'data_Run2023D'                 : tnpSample('data_Run2023D',                eos_2023_PromptReco + '/EGamma0/crab_2023_Run2023D_0v1/240402_215250/0000/TnPTree_data_1.root')
-}
-
-
-
 

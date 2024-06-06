@@ -57,14 +57,14 @@ tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
         'data'  : tnpSamples.Run3_PromptReco2023C['data_Run2023C'].clone(),
-        'mcNom' : tnpSamples.Run3_PromptReco2023C['DY_4j_madgraph_2023postBPIX'].clone(),
-        'tagSel': tnpSamples.Run3_PromptReco2023C['DY_4j_madgraph_2023postBPIX'].clone(),
+        'mcNom' : tnpSamples.Run3_PromptReco2023C['DY_4j_madgraph_2023preBPIX'].clone(),
+        'tagSel': tnpSamples.Run3_PromptReco2023C['DY_4j_madgraph_2023preBPIX'].clone(),
         'mcAlt': None,
 }
 
 ## can add data samples easily
 
-samplesDef['data'].add_sample(tnpSamples.Run3_PromptReco2023D['data_Run2023D'].clone()) 
+#samplesDef['data'].add_sample(tnpSamples.Run3_PromptReco2023D['data_Run2023D'].clone()) 
 
 
 ## some sample-based cuts... general cuts defined here after
