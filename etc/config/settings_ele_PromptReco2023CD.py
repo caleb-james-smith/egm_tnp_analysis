@@ -2,36 +2,40 @@
 ########## General settings
 #############################################################
 
-# flags to be tested
+# cut definitions for flags (to be tested)
 cutpass80 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.967083,0.929117,0.726311)
 cutpass90 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.913286,0.805013,0.358969)
 
-# flags
-MiniAndRelIso   = '(passingCutBasedVeto122XV1 == 1)'
-IPSig3D         = '(passingCutBasedVeto122XV1 == 1)'
+# cut definitions for flags
+passingMiniAndRelIso                = '(passingCutBasedVeto122XV1 == 1)'
+passingIPSig3D                      = '(passingCutBasedVeto122XV1 == 1)'
+passingCutBasedVetoNotTight122XV1   = '(passingCutBasedVeto122XV1 == 1 && passingCutBasedTight122XV1  == 0)'
 
 # flags
 flags = {
-    'passingAllEvents'              : '(1 == 1)',
-    'passingCutBasedVeto94XV2'      : '(passingCutBasedVeto94XV2 == 1)',
-    'passingCutBasedLoose94XV2'     : '(passingCutBasedLoose94XV2 == 1)',
-    'passingCutBasedMedium94XV2'    : '(passingCutBasedMedium94XV2 == 1)',
-    'passingCutBasedTight94XV2'     : '(passingCutBasedTight94XV2 == 1)',
-    'passingCutBasedVeto122XV1'     : '(passingCutBasedVeto122XV1   == 1)',
-    'passingCutBasedLoose122XV1'    : '(passingCutBasedLoose122XV1  == 1)',
-    'passingCutBasedMedium122XV1'   : '(passingCutBasedMedium122XV1 == 1)',
-    'passingCutBasedTight122XV1'    : '(passingCutBasedTight122XV1  == 1)',
-    'passingMVA94Xwp80isoV2'        : '(passingMVA94Xwp80isoV2 == 1 )',
-    'passingMVA94Xwp80noisoV2'      : '(passingMVA94Xwp80noisoV2 == 1 )',
-    'passingMVA94Xwp90isoV2'        : '(passingMVA94Xwp90isoV2 == 1 )',
-    'passingMVA94Xwp90noisoV2'      : '(passingMVA94Xwp90noisoV2 == 1 )',
-    'passingMVA122Xwp80isoV1'       : '(passingMVA122Xwp80isoV1 == 1)',
-    'passingMVA122Xwp90isoV1'       : '(passingMVA122Xwp90isoV1 == 1)',
-    'passingMVA122Xwp80noisoV1'     : '(passingMVA122Xwp80noisoV1 == 1)',
-    'passingMVA122Xwp90noisoV1'     : '(passingMVA122Xwp90noisoV1 == 1)',
-    'passingMVA122XwpLisoV1'        : '(passingMVA122XwpLisoV1 == 1)',
-    'passingMVA122XwpLnoisoV1'      : '(passingMVA122XwpLnoisoV1 == 1)',
-    'passingMVA122XwpHZZisoV1'      : '(passingMVA122XwpHZZisoV1 == 1)'
+    'passingAllEvents'                  : '(1 == 1)',
+    'passingMiniAndRelIso'              : passingMiniAndRelIso,
+    'passingIPSig3D'                    : passingIPSig3D,
+    'passingCutBasedVetoNotTight122XV1' : passingCutBasedVetoNotTight122XV1,
+    'passingCutBasedVeto94XV2'          : '(passingCutBasedVeto94XV2 == 1)',
+    'passingCutBasedLoose94XV2'         : '(passingCutBasedLoose94XV2 == 1)',
+    'passingCutBasedMedium94XV2'        : '(passingCutBasedMedium94XV2 == 1)',
+    'passingCutBasedTight94XV2'         : '(passingCutBasedTight94XV2 == 1)',
+    'passingCutBasedVeto122XV1'         : '(passingCutBasedVeto122XV1   == 1)',
+    'passingCutBasedLoose122XV1'        : '(passingCutBasedLoose122XV1  == 1)',
+    'passingCutBasedMedium122XV1'       : '(passingCutBasedMedium122XV1 == 1)',
+    'passingCutBasedTight122XV1'        : '(passingCutBasedTight122XV1  == 1)',
+    'passingMVA94Xwp80isoV2'            : '(passingMVA94Xwp80isoV2 == 1 )',
+    'passingMVA94Xwp80noisoV2'          : '(passingMVA94Xwp80noisoV2 == 1 )',
+    'passingMVA94Xwp90isoV2'            : '(passingMVA94Xwp90isoV2 == 1 )',
+    'passingMVA94Xwp90noisoV2'          : '(passingMVA94Xwp90noisoV2 == 1 )',
+    'passingMVA122Xwp80isoV1'           : '(passingMVA122Xwp80isoV1 == 1)',
+    'passingMVA122Xwp90isoV1'           : '(passingMVA122Xwp90isoV1 == 1)',
+    'passingMVA122Xwp80noisoV1'         : '(passingMVA122Xwp80noisoV1 == 1)',
+    'passingMVA122Xwp90noisoV1'         : '(passingMVA122Xwp90noisoV1 == 1)',
+    'passingMVA122XwpLisoV1'            : '(passingMVA122XwpLisoV1 == 1)',
+    'passingMVA122XwpLnoisoV1'          : '(passingMVA122XwpLnoisoV1 == 1)',
+    'passingMVA122XwpHZZisoV1'          : '(passingMVA122XwpHZZisoV1 == 1)'
 }
 
 #baseOutDir = '/eos/user/b/bjoshi/www/EGM/TnP/PromptReco_official/tnpEleID_PromptReco2022FG/'
