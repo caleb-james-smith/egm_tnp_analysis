@@ -251,8 +251,16 @@ Run3_Reco_124X_PromptReco_postEE = {
 # }
 
 # medium files
+
+# CMS LPC
+# Run3_PromptReco2023C = {
+#     'DY_4j_madgraph_2023preBPIX'    : tnpSample('DY_4j_madgraph_2023preBPIX',   '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpData/Run3_2023/mc/mc_2023preBPIX_DYto2L-4Jets.root', isMC=True),
+#     'data_Run2023C'                 : tnpSample('data_Run2023C',                '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpData/Run3_2023/data/data_EGamma0_crab_2023_Run2023C_0v1.root')
+# }
+
+# CMS connect
 Run3_PromptReco2023C = {
-    'DY_4j_madgraph_2023preBPIX'    : tnpSample('DY_4j_madgraph_2023preBPIX',   '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpData/Run3_2023/mc/mc_2023preBPIX_DYto2L-4Jets.root', isMC=True),
-    'data_Run2023C'                 : tnpSample('data_Run2023C',                '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpData/Run3_2023/data/data_EGamma0_crab_2023_Run2023C_0v1.root')
+    'DY_4j_madgraph_2023preBPIX'    : tnpSample('DY_4j_madgraph_2023preBPIX',   '/home/caleb/ScientificLinux7/CMS_EGamma/tnpData/Run3_2023/mc/mc_2023preBPIX_DYto2L-4Jets.root', isMC=True),
+    'data_Run2023C'                 : tnpSample('data_Run2023C',                '/home/caleb/ScientificLinux7/CMS_EGamma/tnpData/Run3_2023/data/data_EGamma0_crab_2023_Run2023C_0v1.root')
 }
 

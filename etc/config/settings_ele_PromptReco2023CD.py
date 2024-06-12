@@ -1,11 +1,16 @@
 #############################################################
 ########## General settings
 #############################################################
-# flag to be Tested
+
+# flags to be tested
 cutpass80 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.967083,0.929117,0.726311)
 cutpass90 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.913286,0.805013,0.358969)
 
-# flag to be Tested
+# flags
+MiniAndRelIso   = '(passingCutBasedVeto122XV1 == 1)'
+IPSig3D         = '(passingCutBasedVeto122XV1 == 1)'
+
+# flags
 flags = {
     'passingAllEvents'              : '(1 == 1)',
     'passingCutBasedVeto94XV2'      : '(passingCutBasedVeto94XV2 == 1)',
@@ -30,7 +35,12 @@ flags = {
 }
 
 #baseOutDir = '/eos/user/b/bjoshi/www/EGM/TnP/PromptReco_official/tnpEleID_PromptReco2022FG/'
-baseOutDir = '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpAnalysis/tnpEleID_PromptReco2023CD'
+
+# CMS LPC
+#baseOutDir = '/uscms/home/caleb/nobackup/KU_SUSY_Run3/CMS_EGamma/tnpAnalysis/tnpEleID_PromptReco2023CD'
+
+# CMS connect
+baseOutDir = '/home/caleb/ScientificLinux7/CMS_EGamma/tnpAnalysis/tnpEleID_PromptReco2023CD'
 
 #############################################################
 ########## samples definition  - preparing the samples
