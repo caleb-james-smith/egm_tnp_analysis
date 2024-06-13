@@ -2,21 +2,39 @@
 ########## General settings
 #############################################################
 
+# variables:
+# - el_pt
+# - el_eta
+# - el_abseta
+# - el_dxy
+# - el_dz
+# - el_sip
+# - el_miniIsoAll_fall17
+# - el_miniIsoChg_fall17
+# - el_relIso_fall17
+# - el_relPfLepIso03
+
 # cut definitions for flags (to be tested)
 cutpass80 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.967083,0.929117,0.726311)
 cutpass90 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.913286,0.805013,0.358969)
 
+# Electron Preselection
+Preselection = 'el_pt >= 5 && abs(el_eta) < 2.4 && abs(el_dxy) < 0.05 && abs(el_dz) < 0.1 && el_relPfLepIso03 < (20 + 300/el_pt)'
+
 # cut definitions for flags
-passingMiniAndRelIso                = '(passingCutBasedVeto122XV1 == 1)'
-passingIPSig3D                      = '(passingCutBasedVeto122XV1 == 1)'
 passingCutBasedVetoNotTight122XV1   = '(passingCutBasedVeto122XV1 == 1 && passingCutBasedTight122XV1  == 0)'
+passingMiniAndRelIso                = '(passingCutBasedVeto122XV1 == 1 && el_relPfLepIso03 < 4 && el_miniIsoAll_fall17 < 4)'
+passingIPSig3D                      = '(passingCutBasedVeto122XV1 == 1 && el_sip < 2)'
+passingPreselection                 = '({0})'.format(Preselection)
+passingPreselectionAndVetoID        = '(passingCutBasedVeto122XV1 == 1 && {0})'.format(Preselection)
 
 # flags
 flags = {
-    'passingAllEvents'                  : '(1 == 1)',
+    'passingPreselection'               : passingPreselection,
+    'passingPreselectionAndVetoID'      : passingPreselectionAndVetoID,
+    'passingCutBasedVetoNotTight122XV1' : passingCutBasedVetoNotTight122XV1,
     'passingMiniAndRelIso'              : passingMiniAndRelIso,
     'passingIPSig3D'                    : passingIPSig3D,
-    'passingCutBasedVetoNotTight122XV1' : passingCutBasedVetoNotTight122XV1,
     'passingCutBasedVeto94XV2'          : '(passingCutBasedVeto94XV2 == 1)',
     'passingCutBasedLoose94XV2'         : '(passingCutBasedLoose94XV2 == 1)',
     'passingCutBasedMedium94XV2'        : '(passingCutBasedMedium94XV2 == 1)',
@@ -128,15 +146,20 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree(puFile)
 ########## bining definition  [can be nD bining]
 #############################################################
 biningDef = [
-   { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
+   { 'var' : 'el_sc_eta' ,  'type': 'float', 'bins': [-2.5, -2.0, -1.566, -1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
+   { 'var' : 'el_pt' ,      'type': 'float', 'bins': [10, 20, 35, 50, 100, 200, 500] },
 ]
 
 #############################################################
 ########## Cuts definition for all samples
 #############################################################
 ### cut
+
+# original base cuts
 cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
+
+# new base cuts
+#cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0 && el_pt >= 5 && abs(el_eta) < 2.4 && abs(el_dxy) < 0.05 && abs(el_dz) < 0.1 && el_relPfLepIso03 < (20 + 300/el_pt)'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
 #additionalCuts = { 
