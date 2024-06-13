@@ -19,7 +19,7 @@ cutpass80 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs
 cutpass90 = '(( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||  ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) || ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f ) )' % (0.913286,0.805013,0.358969)
 
 # Electron Preselection
-Preselection = 'el_pt >= 5 && abs(el_eta) < 2.4 && abs(el_dxy) < 0.05 && abs(el_dz) < 0.1 && el_relPfLepIso03 < (20 + 300/el_pt)'
+Preselection = 'el_pt >= 5 && abs(el_eta) < 2.4 && el_sip < 8 && abs(el_dxy) < 0.05 && abs(el_dz) < 0.1 && el_relPfLepIso03 < (20 + 300/el_pt)'
 
 # cut definitions for flags
 passingCutBasedVetoNotTight122XV1   = '(passingCutBasedVeto122XV1 == 1 && passingCutBasedTight122XV1  == 0)'
