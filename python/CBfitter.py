@@ -68,9 +68,6 @@ def analyze(file_name, variable, cuts=""):
     #exp_param = ROOT.RooRealVar("exp_param", "exponential parameter", -0.5, -5, 0)
     #exp_bkg = ROOT.RooExponential("exp_bkg", "Exponential Background", x, exp_param)
 
-
-
-
     nsig1 = ROOT.RooRealVar("nsig1", "number of signal events 1", 45000, 0, 98000)
     nsig2 = ROOT.RooRealVar("nsig2", "number of signal events 2", 45000, 0, 98000)
     nbkg = ROOT.RooRealVar("nbkg", "number of background events", 45000, 0, 98000)
@@ -123,15 +120,10 @@ def analyze(file_name, variable, cuts=""):
     stats_box.AddText(f"n2: {n2.getValV():.0f} +/- {n2.getError():.0f}")
     stats_box.AddText(f"nbkg: {nbkg.getValV():.0f} +/- {nbkg.getError():.0f}")
 
-
     #chi2 = xframe.chiSquare()
     #stats_box.AddText(f"Chi2/NDF: {chi2:.2f}")
     stats_box.AddText(f"Chi2/NDF (CB): {chi2_cb:.2f}")
     stats_box.Draw()
-
-
-
-
 
     if cuts:
         plot_name = "{0}/{1}_{2}.pdf".format(plot_dir, variable, cuts)
@@ -146,8 +138,8 @@ def analyze(file_name, variable, cuts=""):
     del new_c
 
 def main():
-    #file_name = "/uscms_data/d3/bchild/ScientificLinux7/CMSSW_11_2_0/src/TnpData/BParking_2018/Canvas_1.root"
-    file_name = "/uscms_data/d3/bchild/ScientificLinux7/CMSSW_11_2_0/src/tnpData/Run2_2018_BParking/Canvas_1.root"
+    #file_name = "/uscms_data/d3/bchild/ScientificLinux7/CMSSW_11_2_0/src/tnpData/Run2_2018_BParking/Canvas_1.root"
+    file_name = "/uscms_data/d3/caleb/KU_SUSY_Run3/CMS_EGamma/tnpData/Run2_2018_BParking/Canvas_1.root"
     analyze(file_name, "tnpFit")
 
 if __name__ == "__main__":
