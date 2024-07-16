@@ -1,12 +1,12 @@
 #include <iostream>
 #include <math.h>
 #include "TMath.h"
-
-#include "../interface/RooDoubleCBFast.h"
+//#include "../interface/RooDoubleCBFast.h" 
+#include "RooDoubleCBFast.h"
 #include "RooRealVar.h"
 #include "RooRealConstant.h"
-#include "../interface/GBRMath.h"
-
+// #include "../interface/GBRMath.h"
+#include "GBRMath.h"
 using namespace RooFit;
 
  ClassImp(RooDoubleCBFast) 

@@ -147,7 +147,7 @@ def analyze(file_name, variable, cuts=""):
 
 def main():
     #file_name = "/uscms_data/d3/bchild/ScientificLinux7/CMSSW_11_2_0/src/TnpData/BParking_2018/Canvas_1.root"
-    file_name = "/uscms_data/d3/bchild/ScientificLinux7/CMSSW_11_2_0/src/tnpData/Run2_2018_BParking/Formatted_March21_NoRegr_BuToKJpsi_Toee_v2__probeLowPt.root"
+    file_name = "/uscms_data/d3/bchild/ScientificLinux7/CMSSW_11_2_0/src/tnpData/Run2_2018_BParking/Canvas_1.root"
     analyze(file_name, "tnpFit")
 
 if __name__ == "__main__":
